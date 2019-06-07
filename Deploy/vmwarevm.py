@@ -2,7 +2,6 @@ from pyVim.connect import SmartConnect, SmartConnectNoSSL, Disconnect
 from pyVmomi import vim
 from pyVim.task import WaitForTask
 import ssl
-import argparse
 import atexit
 import getpass
 import time
@@ -22,6 +21,7 @@ class VMwareMod:
 		self.vm_name=vm_name
 		self.vm_folder=""
 		self.ip=""
+		self.i = 1
 		self.VsphereClone()
 
 	#Get Vcenter Info
@@ -40,7 +40,7 @@ class VMwareMod:
 				obj = c
 				break
 		return obj
-
+	#Get InfoVM
 	def PrintVmInfo(self, vm, depth=1):
 
 		maxdepth = 10
@@ -68,11 +68,19 @@ class VMwareMod:
 			print("State      : ", summary.runtime.powerState)
 			if summary.guest != None:
 				self.ip = summary.guest.ipAddress
-				if self.ip != None and self.ip != "":
-					print("IP         : ", self.ip)
-					fichier = open("ip", "a")
-					fichier.write("{}\n".format(self.ip))
-					fichier.close()
+				if self.i == 1:
+					if self.ip != None and self.ip != "":
+						print("IP         : ", self.ip)
+						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
+						fichier.write("web1: {}\n".format(self.ip))
+						fichier.close()
+						self.i = 2
+				else:
+					if self.ip != None and self.ip != "":
+						print("IP         : ", self.ip)
+						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
+						fichier.write("web2: {}\n".format(self.ip))
+						fichier.close()
 
 	#Connexion to VCenter
 	def VsphereCo(self):
@@ -120,16 +128,4 @@ class VMwareMod:
 
 
 
-def get_args():
-	parser = argparse.ArgumentParser()
-	parser.add_argument('-v', '--vm-name',
-			    required=True,
-	                    action='store',
-	                    help='Name of the VM you wish to make')
-	args = parser.parse_args()
-	args = parser.parse_args()
-	return args
-
-args = get_args()
-Vtools = VMwareMod(args.vm_name)
 
