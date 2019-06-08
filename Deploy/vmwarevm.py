@@ -116,7 +116,7 @@ class VMwareMod:
 
 		task = template.Clone(folder=destfolder, name=self.vm_name, spec=clonespec)
 		WaitForTask(task)
-		time.sleep(80)
+		time.sleep(70)
 		self.VsphereVmInfo()
 
 

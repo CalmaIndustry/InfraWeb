@@ -7,10 +7,18 @@
     template: src=conf/sources dest=/etc/apt/sources.list
 #  - name: droit autkeys
 #    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
+  - name: hostname.conf
+    template: src=conf/web1name dest=/etc/hostname
+  - name: resolv.conf
+    template: src=conf/resolv dest=/etc/resolv.conf
+  - name: hosts
+    template: src=conf/web1hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/web1network dest=/etc/network/interfaces
   - name: Restart Networking
     action: shell service networking restart
+  - name: Reboot
+    action: shell reboot
 
 - hosts: web2postip
   name: Config Network web2
@@ -21,7 +29,15 @@
     template: src=conf/sources dest=/etc/apt/sources.list
 #  - name: droit autkeys
 #    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
+  - name: hostname.conf
+    template: src=conf/web2name dest=/etc/hostname
+  - name: resolv.conf
+    template: src=conf/resolv dest=/etc/resolv.conf
+  - name: hosts
+    template: src=conf/web2hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/web2network dest=/etc/network/interfaces
   - name: Restart Networking
     action: shell service networking restart
+  - name: Reboot
+    action: shell reboot
