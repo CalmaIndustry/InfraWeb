@@ -71,15 +71,15 @@ class VMwareMod:
 				if self.i == 1:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
-						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
-						fichier.write("web1: {}\n".format(self.ip))
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[web1postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
 						self.i = 2
 				else:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
-						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
-						fichier.write("web2: {}\n".format(self.ip))
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[web2postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
 
 	#Connexion to VCenter
@@ -114,6 +114,7 @@ class VMwareMod:
 		WaitForTask(task)
 		time.sleep(120)
 		self.VsphereVmInfo()
+
 
 	#Get VM Info
 	def VsphereVmInfo(self):
