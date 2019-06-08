@@ -5,12 +5,8 @@
     raw: apt -y install python-simplejson python-minimal
   - name: Config Sources list
     template: src=conf/sources dest=/etc/apt/sources.list
-  - name: droit autkeys
-    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
-  - name: Update
-    apt: update_cache=yes
-  - name: Upgrade
-    apt: upgrade=safe
+#  - name: droit autkeys
+#    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
   - name: Config Network
     template: src=conf/web1network dest=/etc/network/interfaces
   - name: Restart Networking
@@ -23,12 +19,8 @@
     raw: apt -y install python-apt
   - name: Config Sources list
     template: src=conf/sources dest=/etc/apt/sources.list
-  - name: droit autkeys
-    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
-  - name: Update
-    apt: update_cache=yes
-  - name: Upgrade
-    apt: upgrade=safe
+#  - name: droit autkeys
+#    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
   - name: Config Network
     template: src=conf/web2network dest=/etc/network/interfaces
   - name: Restart Networking
