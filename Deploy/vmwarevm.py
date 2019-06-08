@@ -9,7 +9,7 @@ import time
 class VMwareMod:
 
 
-	def __init__(self,vm_name):
+	def __init__(self,vm_name,i):
 		self.vcenter = "192.168.100.10"
 		self.user="administrator@cloud.projet"
 		self.passwd="Pr@jet2019"
@@ -21,7 +21,7 @@ class VMwareMod:
 		self.vm_name=vm_name
 		self.vm_folder=""
 		self.ip=""
-		self.i = 1
+		self.i = i
 		self.VsphereClone()
 
 	#Get Vcenter Info
@@ -42,6 +42,9 @@ class VMwareMod:
 		return obj
 	#Get InfoVM
 	def PrintVmInfo(self, vm, depth=1):
+
+		ch1 = "a"
+
 
 		maxdepth = 10
 
@@ -68,18 +71,19 @@ class VMwareMod:
 			print("State      : ", summary.runtime.powerState)
 			if summary.guest != None:
 				self.ip = summary.guest.ipAddress
-				if self.i == 1:
+				print(self.i)
+				if self.i == ch1:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
-						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
-						fichier.write("web1: {}\n".format(self.ip))
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[web1postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
 						self.i = 2
 				else:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
-						fichier = open("/root/InfraWeb/Ansible/conf/variable.yml", "a")
-						fichier.write("web2: {}\n".format(self.ip))
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[web2postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
 
 	#Connexion to VCenter
@@ -112,8 +116,9 @@ class VMwareMod:
 
 		task = template.Clone(folder=destfolder, name=self.vm_name, spec=clonespec)
 		WaitForTask(task)
-		time.sleep(120)
+		time.sleep(70)
 		self.VsphereVmInfo()
+
 
 	#Get VM Info
 	def VsphereVmInfo(self):
