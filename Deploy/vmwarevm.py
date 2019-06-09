@@ -78,7 +78,6 @@ class VMwareMod:
 						fichier = open("/etc/ansible/hosts", "a")
 						fichier.write("[web1postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
-						self.i = 2
 				else:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
