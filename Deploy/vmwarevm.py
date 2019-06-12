@@ -44,6 +44,8 @@ class VMwareMod:
 	def PrintVmInfo(self, vm, depth=1):
 
 		ch1 = "a"
+		ch2 = "b"
+		ch3 = "c"
 
 
 		maxdepth = 10
@@ -78,12 +80,25 @@ class VMwareMod:
 						fichier = open("/etc/ansible/hosts", "a")
 						fichier.write("[web1postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
-				else:
+				elif self.i == ch2:
 					if self.ip != None and self.ip != "":
 						print("IP         : ", self.ip)
 						fichier = open("/etc/ansible/hosts", "a")
 						fichier.write("[web2postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
 						fichier.close()
+				elif self.i == ch3:
+					if self.ip != None and self.ip != "":
+						print("IP         : ", self.ip)
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[dns1postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
+						fichier.close()
+				else:
+					if self.ip != None and self.ip != "":
+						print("IP         : ", self.ip)
+						fichier = open("/etc/ansible/hosts", "a")
+						fichier.write("[dns2postip]\n{} env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa\n".format(self.ip))
+						fichier.close()
+
 
 	#Connexion to VCenter
 	def VsphereCo(self):

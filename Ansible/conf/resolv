@@ -1,4 +1,4 @@
-domain localdomain
-search localdomain
-nameserver 192.168.100.254
-nameserver 192.168.100.20
+domain cloud.projet
+search cloud.projet
+nameserver 192.168.100.101
+nameserver 192.168.100.102
