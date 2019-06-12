@@ -1,5 +1,5 @@
 - hosts: dns1postip
-  name: Config Network web1
+  name: Config Network dns1
   ignore_unreachable: true
   tasks: 
   - name: Python
@@ -22,7 +22,7 @@
     action: shell reboot
 
 - hosts: dns2postip
-  name: Config Network web2
+  name: Config Network dns2
   ignore_unreachable: true
   tasks:
   - name: Python
