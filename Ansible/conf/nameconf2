@@ -1,0 +1,12 @@
+zone "cloud.projet"{
+        type slave;
+        file "/etc/bind/db.cloud.projet";
+        masters{ 192.168.100.101;};
+};
+
+zone "192.168.100.in-addr.arpa"{
+        type slave;                                                       
+        file "/etc/bind/db.cloud.projet.inv";   
+        masters{ 192.168.100.101;};
+};
+

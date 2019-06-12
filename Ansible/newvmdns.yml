@@ -14,12 +14,12 @@
     action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
   - name: hostname.conf
     template: src=conf/dns1name dest=/etc/hostname
-  - name: resolv.conf
-    template: src=conf/resolv dest=/etc/resolv.conf
   - name: hosts
     template: src=conf/dns1hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/dns1network dest=/etc/network/interfaces
+  - name: Reboot
+    action: shell reboot
 
 - hosts: dns2postip
   name: Config Network web2
@@ -37,11 +37,11 @@
     action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
   - name: hostname.conf
     template: src=conf/dns2name dest=/etc/hostname
-  - name: resolv.conf
-    template: src=conf/resolv dest=/etc/resolv.conf
   - name: hosts
     template: src=conf/web2hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/dns2network dest=/etc/network/interfaces
+  - name: Reboot
+    action: shell reboot
 
 
