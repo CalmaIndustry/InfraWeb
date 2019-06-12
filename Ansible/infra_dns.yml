@@ -1,0 +1,38 @@
+- hosts: dns1
+  name: DNS Primaire
+  gather_facts: True
+  tasks:
+   - name: install bind9
+     apt: name=bind9 state=present update_cache=yes
+   - name: Copy named
+     template: src=conf/nameconf1 dest=/etc/bind/named.conf
+   - name: Copy zoneName
+     template: src=conf/zone1 dest=/etc/bind/db.cloud.projet
+   - name: Copy zoneName Reverse
+     template: src=conf/zone1rev dest=/etc/bind/db.cloud.projet.inv 
+   - name: resolv.conf
+     template: src=conf/resolv dest=/etc/resolv.conf
+   - name: Line
+     lineinfile: dest=/etc/default/bind9 line="OPTIONS='-4'"
+   - name: Redemarrage Bind9
+     service: name=bind9 state=restarted
+
+- hosts: dns2
+  name: DNS Primaire
+  gather_facts: True
+  tasks:
+   - name: install bind9
+     apt: name=bind9 state=present update_cache=yes
+   - name: Copy named
+     template: src=conf/nameconf2 dest=/etc/bind/named.conf
+   - name: Copy zoneName
+     template: src=conf/zone2 dest=/etc/bind/db.cloud.projet
+   - name: Copy zoneName Reverse
+     template: src=conf/zone2rev dest=/etc/bind/db.cloud.projet.inv
+   - name: resolv.conf
+     template: src=conf/resolv dest=/etc/resolv.conf
+   - name: Line
+     lineinfile: dest=/etc/default/bind9 line="OPTIONS='-4'"
+   - name: Redemarrage Bind9
+     service: name=bind9 state=restarted
+

@@ -43,3 +43,7 @@
 
 ## db-[99:101]-node.example.com
 
+[dns1]
+192.168.100.101 env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa
+[dns2]
+192.168.100.102 env=prod ansible_ssh_user=root ansible_ssh_private_key_file=/root/InfraWeb/Cert/id_rsa-pa

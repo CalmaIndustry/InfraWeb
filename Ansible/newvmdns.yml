@@ -1,0 +1,47 @@
+- hosts: dns1postip
+  name: Config Network dns1
+  ignore_unreachable: true
+  tasks: 
+  - name: Python
+    raw: apt -y install python-simplejson python-minimal python-apt
+  - name: Config Sources list
+    template: src=conf/sources dest=/etc/apt/sources.list
+  - name: Update - apt transport
+    apt: name=apt-transport-https state=present
+  - name: Update - dirmngr
+    apt: name=dirmngr state=present
+  - name: droit autkeys
+    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
+  - name: hostname.conf
+    template: src=conf/dns1name dest=/etc/hostname
+  - name: hosts
+    template: src=conf/dns1hosts dest=/etc/hosts
+  - name: Config Network
+    template: src=conf/dns1network dest=/etc/network/interfaces
+  - name: Reboot
+    action: shell reboot
+
+- hosts: dns2postip
+  name: Config Network dns2
+  ignore_unreachable: true
+  tasks:
+  - name: Python
+    raw: apt -y install python-simplejson python-minimal python-apt
+  - name: Config Sources list
+    template: src=conf/sources dest=/etc/apt/sources.list
+  - name: Update - apt transport
+    apt: name=apt-transport-https state=present
+  - name: Update - dirmng
+    apt: name=dirmngr state=present
+  - name: droit autkeys
+    action: shell apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
+  - name: hostname.conf
+    template: src=conf/dns2name dest=/etc/hostname
+  - name: hosts
+    template: src=conf/web2hosts dest=/etc/hosts
+  - name: Config Network
+    template: src=conf/dns2network dest=/etc/network/interfaces
+  - name: Reboot
+    action: shell reboot
+
+
