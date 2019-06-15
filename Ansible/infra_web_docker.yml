@@ -2,10 +2,12 @@
   name: "** Frontend & Backend"
   gather_facts: True
   tasks:
-   - name: FRONT - Update 
-     apt: name=apt-transport-https state=present 
+   - name: FRONT - updates server
+     apt: update_cache=yes
+   - name: FRONT - transport
+     apt: name=apt-transport-https state=present update_cache=yes
    - name: FRONT - Installation nginx
-     apt: name=nginx state=present update_cache=yes
+     apt: name=nginx state=present
    - name: Copy Nginx
      template: src=conf/loadbalancer-nginx-prod.conf dest=/etc/nginx/nginx.conf 
    - name: Redemarrage nginx
@@ -24,7 +26,7 @@
    - name: CLUSTER - Installation heartbeat
      apt: name=heartbeat
    - name: Configuration Heartbeat Noeud
-     template: src=conf/heartbeat.conf dest=//etc/heartbeat/ha.cf
+     template: src=conf/heartbeat.conf dest=/etc/heartbeat/ha.cf
    - name: Configuration Heartbeat Key
      template: src=conf/autkey dest=/etc/heartbeat/authkeys
    - name: droit autkeys

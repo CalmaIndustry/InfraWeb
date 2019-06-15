@@ -75,7 +75,7 @@ class VMwareVlan:
 				nicspec.device.connectable = vim.vm.device.VirtualDevice.ConnectInfo()
 				nicspec.device.connectable.startConnected = True
 
-#				nicspec.device.connectable.connected = True
+				nicspec.device.connectable.connected = True
 				nicspec.device.connectable.allowGuestControl = True
 				device_change.append(nicspec)
 
@@ -85,6 +85,6 @@ class VMwareVlan:
 
 				VMs = self.content.searchIndex.FindByDnsName(None, self.vm_name, True)
 				print(vm)
-				TASK = VMs.ResetVM_Task()
+#				TASK = VMs.ResetVM_Task()
 #				WaitForTask(TASK)
 

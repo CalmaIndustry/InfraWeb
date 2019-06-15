@@ -11,5 +11,5 @@ iface lo inet loopback
 auto ens192
 allow-hotplug ens192
 iface ens192 inet static
-address 192.168.100.161/24
-gateway 192.168.100.254
+address 192.168.200.3/29
+gateway 192.168.200.1

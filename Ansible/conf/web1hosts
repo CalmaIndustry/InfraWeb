@@ -1,7 +1,7 @@
 127.0.0.1       localhost
-127.0.1.1       web1
-192.168.100.161 web1
-192.168.100.162 web2
+127.0.1.1       web1.cloud.projet
+192.168.200.3   web1.cloud.projet
+192.168.200.4   web2.cloud.projet
 
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
