@@ -15,6 +15,8 @@ git clone git@github.com:QLSCloud/InfraWeb.git
 
 python3 infraweb.py -a --all
 
+--------------------------
+
 - For only Web Infra
 	- VM Web x 2
 	- App Web
