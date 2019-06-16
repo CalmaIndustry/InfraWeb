@@ -8,7 +8,6 @@ git clone git@github.com:QLSCloud/InfraWeb.git
 ---------------------------
 
 - For all the package 
-
 	- VM Web x 2
 	- App Web
 	- VM Dns x2
