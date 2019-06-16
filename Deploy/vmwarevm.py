@@ -15,7 +15,7 @@ class VMwareMod:
 		self.passwd="Pr@jet2019"
 		self.template_name="Template"
 		self.content = ""
-		self.datastore_name = "datastore1"
+		self.datastore_name = "datastore2"
 		self.resource_pool_name ="Cluster ESX"
 		self.datacenter_name = ""
 		self.vm_name=vm_name

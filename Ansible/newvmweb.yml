@@ -20,6 +20,8 @@
     template: src=conf/web1hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/web1network dest=/etc/network/interfaces
+  - name: Reboot
+    action: shell reboot
 
 - hosts: web2postip
   name: Config Network web2
@@ -43,5 +45,5 @@
     template: src=conf/web2hosts dest=/etc/hosts
   - name: Config Network
     template: src=conf/web2network dest=/etc/network/interfaces
-
-
+  - name: Reboot
+    action: shell reboot

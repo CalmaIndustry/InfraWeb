@@ -2,10 +2,12 @@
   name: "** Frontend & Backend"
   gather_facts: True
   tasks:
-   - name: FRONT - Update 
-     apt: name=apt-transport-https state=present 
+   - name: FRONT - updates server
+     apt: update_cache=yes
+   - name: FRONT - transport
+     apt: name=apt-transport-https state=present update_cache=yes
    - name: FRONT - Installation nginx
-     apt: name=nginx state=present update_cache=yes
+     apt: name=nginx state=present
    - name: Copy Nginx
      template: src=conf/loadbalancer-nginx-prod.conf dest=/etc/nginx/nginx.conf 
    - name: Redemarrage nginx
@@ -16,15 +18,15 @@
      action: shell docker kill `docker ps -q`
      ignore_errors: True
    - name: Provisionnement du service (instance 1)
-     action: shell docker run -td -p 8080:80 httpd:2.4
+     action: shell docker run -td -p 8080:80 -v /home/apache/web/:/usr/local/apache2/htdocs/ httpd:2.4
    - name: Provisionnement du service (instance 2)
-     action: shell docker run -td -p 8081:80 httpd:2.4
+     action: shell docker run -td -p 8081:80 -v /home/apache/web/:/usr/local/apache2/htdocs/ httpd:2.4
    - name: Regle iptables
      action: shell iptables -A DOCKER -p tcp --dport 80 -j ACCEPT
    - name: CLUSTER - Installation heartbeat
      apt: name=heartbeat
    - name: Configuration Heartbeat Noeud
-     template: src=conf/heartbeat.conf dest=//etc/heartbeat/ha.cf
+     template: src=conf/heartbeat.conf dest=/etc/heartbeat/ha.cf
    - name: Configuration Heartbeat Key
      template: src=conf/autkey dest=/etc/heartbeat/authkeys
    - name: droit autkeys

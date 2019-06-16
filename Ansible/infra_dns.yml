@@ -3,7 +3,7 @@
   gather_facts: True
   tasks:
    - name: install bind9
-     apt: name=bind9 state=present update_cache=yes
+     apt: name=bind9 state=present
    - name: Copy named
      template: src=conf/nameconf1 dest=/etc/bind/named.conf
    - name: Copy zoneName
@@ -22,7 +22,7 @@
   gather_facts: True
   tasks:
    - name: install bind9
-     apt: name=bind9 state=present update_cache=yes
+     apt: name=bind9 state=present
    - name: Copy named
      template: src=conf/nameconf2 dest=/etc/bind/named.conf
    - name: Copy zoneName
