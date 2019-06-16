@@ -18,9 +18,9 @@
      action: shell docker kill `docker ps -q`
      ignore_errors: True
    - name: Provisionnement du service (instance 1)
-     action: shell docker run -td -p 8080:80 httpd:2.4
+     action: shell docker run -td -p 8080:80 -v /home/apache/web/:/usr/local/apache2/htdocs/ httpd:2.4
    - name: Provisionnement du service (instance 2)
-     action: shell docker run -td -p 8081:80 httpd:2.4
+     action: shell docker run -td -p 8081:80 -v /home/apache/web/:/usr/local/apache2/htdocs/ httpd:2.4
    - name: Regle iptables
      action: shell iptables -A DOCKER -p tcp --dport 80 -j ACCEPT
    - name: CLUSTER - Installation heartbeat
