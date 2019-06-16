@@ -8,7 +8,6 @@ git clone git@github.com:QLSCloud/InfraWeb.git
 ---------------------------
 
 - For all the package 
-
 	- VM Web x 2
 	- App Web
 	- VM Dns x2
@@ -16,10 +15,8 @@ git clone git@github.com:QLSCloud/InfraWeb.git
 
 python3 infraweb.py -a --all
 
-
 - For only Web Infra
-
-        - VM Web x 2
+	- VM Web x 2
         - App Web
 
 python3 infraweb.py -vw --vmweb
