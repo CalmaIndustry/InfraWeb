@@ -40,10 +40,6 @@ def deployweb():
         vlan1 = VMwareVlan("web1")
         vlan2 = VMwareVlan("web2")
 
-def deployvlan():
-	vlan1 = VMwareVlan("web1")
-	vlan2 = VMwareVlan("web2")
-
 def deploydns():
         deploy1 = VMwareMod("dns1","c")
         deploy2 = VMwareMod("dns2","d")
@@ -54,7 +50,7 @@ def appweb():
         os.system('ansible-playbook Ansible/infra_web_docker.yml')
 
 def appdns():
-        os.system('ansible-playbook Ansible/infra_web_docker.yml')
+        os.system('ansible-playbook Ansible/infra_dns.yml')
 
 def main():
 	args = get_args()
