@@ -2,3 +2,4 @@ domain cloud.projet
 search cloud.projet
 nameserver 192.168.100.101
 nameserver 8.8.8.8
+nameserver 192.168.100.102

@@ -72,7 +72,7 @@ def main():
 	elif args.dns:
 		appdns()
 	else:
-		print("Pas d'argument")
+		print("No Argument")
 
 
 if __name__ == "__main__":
